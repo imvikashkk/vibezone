@@ -1,8 +1,6 @@
-import { useUser } from "@clerk/nextjs";
-import Loader from "../loader/Loader";
 import { PersonAddAlt, PersonRemove } from "@mui/icons-material";
 import Image from "next/image";
-import React, { ReactNode } from "react";
+import React, { ReactNode, useState } from "react";
 import { tabsData } from "@/constants";
 import Link from "next/link";
 import type { UserType } from "@/lib/models/User";
@@ -15,10 +13,27 @@ export default function ProfileCard({
   userData: UserType;
   activeTab: string;
 }): ReactNode {
-  const { userDBData } = useUserInformation();
-  const isFollowing = userDBData?.following?.find(
+  const { userDBData, getUser } = useUserInformation();
+  const isfollowing = userDBData?.following?.find(
     (item: any) => item?._id === userData?._id
   );
+  const [isFollowing, setIsFollowing] = useState(isfollowing ? true : false);
+
+  const handleFollow = async () => {
+    setIsFollowing((prev) => !prev);
+      const response = await fetch(
+        `/api/user/${userDBData?._id}/follow/${userData._id}`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      if (response.ok) {
+        getUser()
+      }
+  };
 
   return (
     <div className="flex flex-col gap-9">
@@ -62,10 +77,12 @@ export default function ProfileCard({
           (isFollowing ? (
             <PersonRemove
               sx={{ color: "#7857FF", cursor: "pointer", fontSize: "40px" }}
+              onClick={handleFollow}
             />
           ) : (
             <PersonAddAlt
               sx={{ color: "#7857FF", cursor: "pointer", fontSize: "40px" }}
+              onClick={handleFollow}
             />
           ))}
       </div>
