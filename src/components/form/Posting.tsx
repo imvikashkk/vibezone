@@ -88,7 +88,6 @@ const Posting = ({
       });
 
       if (response.ok) {
-        router.replace(`/`);
         getUser();
         getFeedPost();
       }
