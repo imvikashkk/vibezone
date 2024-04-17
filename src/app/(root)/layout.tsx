@@ -1,5 +1,3 @@
-"use client";
-
 import Merged from "@/components/layout/Merged";
 import UserProvider from "@/context";
 import BottomBar from "@/components/layout/BottomBar";

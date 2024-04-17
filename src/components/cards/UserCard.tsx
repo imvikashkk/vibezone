@@ -1,5 +1,3 @@
-"use client";
-
 import { PersonAddAlt, PersonRemove } from "@mui/icons-material";
 import { useUserInformation } from "@/context";
 import Image from "next/image";

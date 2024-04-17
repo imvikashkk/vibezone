@@ -90,6 +90,7 @@ const Posting = ({
       if (response.ok) {
         getUser();
         getFeedPost();
+        router.replace(`/`);
       }
 
       setIsUploading(false);

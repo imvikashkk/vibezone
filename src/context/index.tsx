@@ -1,3 +1,4 @@
+"use client"
 import { useUser } from "@clerk/nextjs";
 import React, {
   useCallback,
@@ -11,7 +12,6 @@ import React, {
 const User_Information = createContext<any>(null);
 
 function Index({ children }: { children: ReactNode }) {
-  // user From Clerk
   const { user, isLoaded }: { user: any; isLoaded: boolean } = useUser();
   const [userData, setUserData] = useState();
   const [feedPost, setFeedPost] = useState([]);

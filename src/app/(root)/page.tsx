@@ -3,6 +3,7 @@
 import Loader from "@/components/loader/Loader";
 import PostCard from "@/components/cards/PostCard";
 import { useUserInformation } from "@/context";
+import { useEffect } from "react";
 
 interface PostType {
   _id: string;
@@ -16,10 +17,11 @@ interface PostType {
   __v: number;
 }
 
-
 const Home = () => {
   const { userDBData, getFeedPost, feedPost } = useUserInformation();
-
+  useEffect(()=>{{
+    getFeedPost();
+  }})
   return (
     <div className="w-full items-center flex flex-col gap-10">
       {userDBData &&

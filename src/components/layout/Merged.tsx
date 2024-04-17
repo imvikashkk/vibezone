@@ -1,10 +1,10 @@
+"use client"
 import React, { ReactNode } from "react";
 import LeftSideBar from "./LeftBarMenu";
 import MainContainer from "./MainContainer";
 import RightSideBar from "./RightSideBar";
 import Loader from "../loader/Loader";
 import { useUserInformation } from "@/context";
-import BottomBar from "./BottomBar";
 
 const Merged = ({ children }: { children: ReactNode }) => {
   const { userDBData} = useUserInformation();
